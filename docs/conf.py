@@ -32,3 +32,9 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 html_theme = 'furo'
 html_static_path = ['_static']
+
+intersphinx_mapping = {
+    "python": ("https://docs.python.org/3", None),
+    "typing": ("https://docs.python.org/3", None),
+    "pathlib": ("https://docs.python.org/3", None),
+}
