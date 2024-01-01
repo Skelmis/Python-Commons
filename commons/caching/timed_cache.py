@@ -1,7 +1,6 @@
+from dataclasses import dataclass
 from datetime import timedelta, datetime
 from typing import Any, Dict, Optional, Generic, TypeVar
-
-import attr
 
 KT = TypeVar("KT", bound=Any)
 VT = TypeVar("VT", bound=Any)
@@ -15,10 +14,10 @@ class NonExistentEntry(Exception):
     """No entry found in the cache with this key."""
 
 
-@attr.s(slots=True)
+@dataclass(slots=True)
 class Entry:
-    value: Any = attr.ib()
-    expiry_time: Optional[datetime] = attr.ib(default=None)
+    value: Any
+    expiry_time: Optional[datetime] = None
 
 
 class TimedCache(Generic[KT, VT]):
