@@ -10,6 +10,8 @@ Welcome to Python Commons's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   modules/caching.rst
+
 
 
 Indices and tables
