@@ -21,13 +21,14 @@ class Entry:
 
 
 class TimedCache(Generic[KT, VT]):
-    __slots__ = ("cache", "global_ttl", "non_lazy")
+    __slots__ = ("cache", "global_ttl", "non_lazy", "ttl_from_last_access")
 
     def __init__(
         self,
         *,
         global_ttl: Optional[timedelta] = None,
         lazy_eviction: bool = True,
+        ttl_from_last_access: bool = False,
     ):
         """
         Parameters
@@ -38,10 +39,23 @@ class TimedCache(Generic[KT, VT]):
             Whether this cache should perform lazy eviction or not.
 
             Defaults to True
+        ttl_from_last_access: bool
+            Whether the TTL of an object is dictated by
+            the last access or time of insertion.
+
+            This requires a global TTL to be set.
+
+            Defaults to True, time of insertion.
         """
         self.cache: Dict[KT, Entry] = {}
         self.non_lazy: bool = not lazy_eviction
         self.global_ttl: Optional[timedelta] = global_ttl
+        self.ttl_from_last_access: bool = ttl_from_last_access
+
+        if self.ttl_from_last_access is True and self.global_ttl is None:
+            raise ValueError(
+                "Cannot set ttl_from_last_access without global_ttl also being set."
+            )
 
     def __contains__(self, item: Any) -> bool:
         try:
@@ -142,7 +156,16 @@ class TimedCache(Generic[KT, VT]):
         if key not in self:
             raise NonExistentEntry
 
-        return self.cache[key].value
+        entry: Entry = self.cache[key]
+        if self.ttl_from_last_access and entry.expiry_time is not None:
+            if self.global_ttl is None:
+                raise ValueError(
+                    "ttl_from_last_access requires global_ttl also being set."
+                )
+
+            entry.expiry_time = datetime.now() + self.global_ttl
+
+        return entry.value
 
     def force_clean(self) -> None:
         """
