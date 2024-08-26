@@ -3,14 +3,19 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Python Commons's documentation!
-==========================================
+Welcome to Skelmis Commons's documentation!
+===========================================
+
+I like to build a lot of software and this is the generic
+stuff I've thrown together into a single package for re-use.
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+   modules/generic.rst
    modules/caching.rst
+   modules/async.rst
 
 
 
