@@ -35,7 +35,7 @@ def is_within_next_(
     bool
         True if times within the given delta.
     """
-    if current_datetime > expected_datetime:
+    if is_in_the_past(current_datetime, expected_datetime):
         # Date is in the past
         return False
 
@@ -44,3 +44,11 @@ def is_within_next_(
         return True
 
     return False
+
+
+def is_in_the_past(
+    current_datetime: datetime.datetime,
+    expected_datetime: datetime.datetime,
+) -> bool:
+    """Returns True if the datetime is in the past."""
+    return current_datetime > expected_datetime

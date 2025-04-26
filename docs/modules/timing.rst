@@ -7,3 +7,5 @@ Timing utilities
 
 .. autofunction:: is_within_next_
 
+.. autofunction:: is_in_the_past
+
