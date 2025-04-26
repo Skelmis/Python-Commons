@@ -16,6 +16,7 @@ stuff I've thrown together into a single package for re-use.
    modules/generic.rst
    modules/caching.rst
    modules/async.rst
+   modules/timing.rst
 
 
 

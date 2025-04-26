@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "skelmis-commons"
-version = "1.4.0"
+version = "1.5.0"
 description = "A bunch of Python code I reuse in many projects and wanted to centralise."
 authors = ["skelmis <skelmis.craft@gmail.com>"]
 license = "MIT"
