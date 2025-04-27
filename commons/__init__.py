@@ -14,7 +14,7 @@ __all__ = (
     "value_to_bool",
     "timing",
 )
-__version__ = "1.5.1"
+__version__ = "1.5.2"
 VersionInfo = namedtuple("VersionInfo", "major minor micro releaselevel serial")
-version_info = VersionInfo(major=1, minor=5, micro=1, releaselevel="final", serial=0)
+version_info = VersionInfo(major=1, minor=5, micro=2, releaselevel="final", serial=0)
 logging.getLogger(__name__).addHandler(logging.NullHandler())
