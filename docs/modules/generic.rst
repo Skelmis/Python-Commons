@@ -7,6 +7,8 @@ Generic utilities
 
 .. autofunction:: exception_as_string
 
+.. autofunction:: exceptions_as_string
+
 .. autofunction:: value_to_bool
 
 .. py:currentmodule:: commons.hibp
